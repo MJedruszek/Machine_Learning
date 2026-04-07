@@ -127,16 +127,16 @@ class DecisionTree:
         return self
     
     #in order to start, give root as node
-    def _predict_sample(self, sample, node):
+    def predict_sample(self, sample, node):
         #If we're at a leaf, return its prediction
         if node.value is not None:
             return node.value
         
         #Otherwise, decide which way to go
         if sample[node.feature] <= node.threshold:
-            return self._predict_single(sample, node.left)   #Go left
+            return self.predict_sample(sample, node.left)   #Go left
         else:
-            return self._predict_single(sample, node.right)  #Go right
+            return self.predict_sample(sample, node.right)  #Go right
         
     #Helper function: visualise to help debugging
     #Not ideal, but good enough to draw the tree by hand with its help
