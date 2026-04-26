@@ -1,5 +1,6 @@
 from database_handler import prepare_dataset
 from tree import DecisionTree
+from tests import run_tests
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
@@ -15,8 +16,8 @@ scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
-def tree():
-    dt = DecisionTree(max_depth=20, min_samples_split=2)
+def tree(max_depth=20, min_samples_split=2):
+    dt = DecisionTree(max_depth=max_depth, min_samples_split=min_samples_split)
     dt.fit(X_train, y_train)
 
     # for confusion matrix
@@ -123,8 +124,10 @@ def tree_sklearn(max_depth = 20, min_samples_split=2):
     
     print(f"Sklearn Tree Accuracy: {acc:.4f}")
 
-tree()
-logistic_regression()
-random_forest()
-mlp()
-tree_sklearn(10, 2)
+# tree()
+# logistic_regression()
+# random_forest()
+# mlp()
+# tree_sklearn(10, 2)
+
+run_tests()
